@@ -23,14 +23,18 @@
 
 # Fake Sensors
 def get_soil_moisture(zone_id: int) -> dict:
+
     zone_id = int(zone_id)
+
     # Zones 1, 2, and 4 are dry
     if zone_id in [1, 2, 4]:
         return {"zone": zone_id, "moisture_percent": 10, "critical_threshold": 30}
     return {"zone": zone_id, "moisture_percent": 45, "critical_threshold": 30}
 
 def get_weather_forecast(zone_id: int) -> dict:
+
     zone_id = int(zone_id)
+
     if zone_id == 2:
         return {"zone": zone_id, "rain_probability": 85, "hours_until_rain": 2}
     elif zone_id == 4:
@@ -39,7 +43,9 @@ def get_weather_forecast(zone_id: int) -> dict:
     return {"zone": zone_id, "rain_probability": 10, "hours_until_rain": 24}
 
 def get_crop_and_soil_data(zone_id: int) -> dict:
+
     zone_id = int(zone_id)
+
     if zone_id == 4:
         # Fragile crop
         return {"zone": zone_id, "crop_type": "Strawberries", "soil_type": "Sandy", "drought_tolerance_hours": 1}
@@ -74,4 +80,8 @@ def suspend_irrigation_wrapper(input_str: str) -> str:
         delay = int(delay_str.strip())
         return suspend_irrigation(zone_id=zone_id, delay_hours=delay)
     except ValueError:
+
         return f"Error: Invalid input format. Expected 'zone_id, delay_hours' (e.g., '5, 2'). You provided: '{input_str}'"
+
+        return f"Error: Invalid input format. Expected 'zone_id, delay_hours' (e.g., '5, 2'). You provided: '{input_str}'"
+
